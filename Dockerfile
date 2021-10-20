@@ -1,5 +1,6 @@
 FROM codercom/code-server
 USER coder
-ADD extensions /home/coder/.config/code-server/extensions
-RUN sudo chown -R coder /home/coder/.config
-RUN code-server --install-extension /home/coder/.config/code-server/extensions/vs-code-bpmn-io-0.12.0.vsix
+RUN sudo mkdir /user-data
+ADD extensions /extensions
+RUN sudo chown -R coder /extensions /user-data
+RUN code-server --user-data-dir /user-data --install-extension /extensions/vs-code-bpmn-io-0.12.0.vsix
